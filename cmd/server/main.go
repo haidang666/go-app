@@ -20,7 +20,7 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
 
-	c, err := app.CreateServerContainer(ctx, cfg)
+	c, err := app.CreateServerContainer()
 	if err != nil {
 		logger.L().Fatalf("fail to create server container: %v", err)
 	}
