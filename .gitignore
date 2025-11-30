@@ -1,0 +1,57 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of the go coverage tool
+*.coverprofile
+*.coverage
+*.cov
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Go modules
+vendor/
+
+# Dependency directories (may be needed if using vendoring)
+Godeps/
+
+# IDE/editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.DS_Store
+*.log
+
+# Go build cache
+/tmp
+*.tmp
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# GoReleaser
+dist/
+
+# Test results
+test-results/
+coverage/
+
+# Docker
+*.tar
+*.img
+
+# JetBrains Rider / Goland
+.idea/
+
+# Bun
+bun.lockb
