@@ -5,11 +5,11 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/haidang666/go-app/internal/infrastructure/http/module_route/auth"
+	"github.com/haidang666/go-app/internal/infrastructure/http/handlers/auth"
 )
 
 type NewRouterArgs struct {
-	AuthHandler        *auth.AuthHandler
+	AuthHandler *auth.AuthHandler
 }
 
 func NewRouter(args NewRouterArgs) *chi.Mux {

@@ -3,32 +3,28 @@ package auth
 import (
 	"context"
 
+	"github.com/haidang666/go-app/internal/domain/contract"
+	"github.com/haidang666/go-app/internal/domain/dto"
 	"github.com/haidang666/go-app/internal/domain/entity"
-	"github.com/haidang666/go-app/internal/domain/repository"
-	"github.com/haidang666/go-app/internal/domain/use_case/auth/dto"
 	"golang.org/x/crypto/bcrypt"
 )
 
 type SignUpUseCase struct {
-	userRepo repository.UserRepository
+	userRepo contract.UserRepository
 }
 
-func NewSignUpUseCase(userRepo repository.UserRepository) *SignUpUseCase {
+func NewSignUpUseCase(userRepo contract.UserRepository) *SignUpUseCase {
 	return &SignUpUseCase{userRepo: userRepo}
 }
 
-func (uc *SignUpUseCase) Execute(ctx context.Context, req *dto.SignUpRequestDto) (*entity.User, error) {
-	if err := req.Validate(); err != nil {
-		return nil, err
-	}
-
-	hashed, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
+func (uc *SignUpUseCase) Execute(ctx context.Context, input *dto.SignUpInput) (*entity.User, error) {
+	hashed, err := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return nil, err
 	}
 
 	du := &entity.User{
-		Email:          req.Email,
+		Email:          input.Email,
 		HashedPassword: string(hashed),
 	}
 

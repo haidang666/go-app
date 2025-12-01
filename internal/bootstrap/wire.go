@@ -1,14 +1,14 @@
 //go:build wireinject
 // +build wireinject
 
-package app
+package bootstrap
 
 import (
 	"github.com/go-chi/chi/v5"
 	"github.com/google/wire"
-	"github.com/haidang666/go-app/internal/domain/repository"
+	"github.com/haidang666/go-app/internal/domain/contract"
 	authUseCase "github.com/haidang666/go-app/internal/domain/use_case/auth"
-	"github.com/haidang666/go-app/internal/infrastructure/http/module_route/auth"
+	"github.com/haidang666/go-app/internal/infrastructure/http/handlers/auth"
 	"github.com/haidang666/go-app/internal/infrastructure/http/router"
 	infrastructure "github.com/haidang666/go-app/internal/infrastructure/repository"
 )
@@ -23,12 +23,12 @@ var ProviderSet = wire.NewSet(
 )
 
 // ProvideUserRepository provides the user repository implementation
-func ProvideUserRepository() repository.UserRepository {
+func ProvideUserRepository() contract.UserRepository {
 	return infrastructure.NewUserRepository()
 }
 
 // ProvideSignUpUseCase provides the sign up use case
-func ProvideSignUpUseCase(userRepo repository.UserRepository) *authUseCase.SignUpUseCase {
+func ProvideSignUpUseCase(userRepo contract.UserRepository) *authUseCase.SignUpUseCase {
 	return authUseCase.NewSignUpUseCase(userRepo)
 }
 
